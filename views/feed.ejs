@@ -89,9 +89,9 @@
                                                 <span class="dim">
                                                     <%= m.name %>
                                                 </span>
-                                                <span class="time">
+                                                <time class="time" datetime="<%= m.iso %>">
                                                     <%= m.time %>
-                                                </span>
+                                                </time>
                                                 <% } else { %>
                                                     <span class="redacted"
                                                         aria-label="Author classified">CLASSIFIED</span>

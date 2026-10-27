@@ -22,6 +22,7 @@ async function loadFeed(user) {
       message.handle = row.username;
       message.name = `${row.first_name} ${row.last_name}`;
       message.time = formatTime(row.created_at);
+      message.iso = row.created_at.toISOString();
     }
 
     return message;
