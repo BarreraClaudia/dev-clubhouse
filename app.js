@@ -5,6 +5,7 @@ import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import passport from './config/passport.js';
 import pool from './db/pool.js';
+import authRouter from './routes/authRouter.js';
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
+app.use('/', authRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, (error) => {

@@ -1,0 +1,44 @@
+<%- include('partials/header', { title: 'Log In' }) %>
+
+    <main class="narrow">
+        <div>
+            <p class="eyebrow">// RETURNING</p>
+            <h1 class="display">&gt; login<span class="cursor"></span></h1>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="terminal-title">guest@dev_clubhouse: ~/login</span>
+            </div>
+
+            <form class="terminal-body" action="/log-in" method="POST">
+                <% if (errors.length) { %>
+                    <ul class="errors" role="alert">
+                        <% errors.forEach((err)=> { %>
+                            <li>&gt; ERROR: <%= err.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+
+                        <div class="field">
+                            <label for="username">username</label>
+                            <input id="username" name="username" type="text" placeholder="ada_l" autocomplete="username"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label for="password">password</label>
+                            <input id="password" name="password" type="password" placeholder="••••••••"
+                                autocomplete="current-password" required>
+                        </div>
+
+                        <button class="btn btn-solid btn-block" type="submit">&gt; AUTHENTICATE</button>
+            </form>
+        </div>
+
+        <p class="center dim">No account yet? <a class="link" href="/sign-up">sign up</a></p>
+    </main>
+
+    <%- include('partials/footer') %>

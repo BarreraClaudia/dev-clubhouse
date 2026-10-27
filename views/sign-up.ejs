@@ -1,0 +1,67 @@
+<%- include('partials/header', { title: 'Sign Up' }) %>
+
+    <main class="narrow">
+        <div>
+            <p class="eyebrow">// NEW RECRUIT</p>
+            <h1 class="display">&gt; create_account<span class="cursor"></span></h1>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="terminal-title">guest@dev_clubhouse: ~/signup</span>
+            </div>
+
+            <form class="terminal-body" action="/sign-up" method="POST" novalidate>
+                <% if (errors.length) { %>
+                    <ul class="errors" role="alert">
+                        <% errors.forEach((err)=> { %>
+                            <li>&gt; ERROR: <%= err.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+
+                        <div class="grid-2">
+                            <div class="field">
+                                <label for="first_name">first_name</label>
+                                <input id="first_name" name="first_name" type="text" placeholder="Ada"
+                                    value="<%= formData.first_name || '' %>" autocomplete="given-name" required>
+                            </div>
+                            <div class="field">
+                                <label for="last_name">last_name</label>
+                                <input id="last_name" name="last_name" type="text" placeholder="Lovelace"
+                                    value="<%= formData.last_name || '' %>" autocomplete="family-name" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="username">username</label>
+                            <input id="username" name="username" type="text" placeholder="ada_l"
+                                value="<%= formData.username || '' %>" autocomplete="username" required>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="field">
+                                <label for="password">password</label>
+                                <input id="password" name="password" type="password" placeholder="••••••••"
+                                    autocomplete="new-password" required>
+                            </div>
+                            <div class="field">
+                                <label for="confirm_password">confirm_password</label>
+                                <input id="confirm_password" name="confirm_password" type="password"
+                                    placeholder="••••••••" autocomplete="new-password" required>
+                            </div>
+                        </div>
+
+                        <p class="note">New accounts start as RECRUIT. You can post, but names and timestamps stay
+                            classified until you join the club.</p>
+
+                        <button class="btn btn-solid btn-block" type="submit">&gt; CREATE ACCOUNT</button>
+            </form>
+        </div>
+
+        <p class="center dim">Already enlisted? <a class="link" href="/log-in">log in</a></p>
+    </main>
+
+    <%- include('partials/footer') %>
