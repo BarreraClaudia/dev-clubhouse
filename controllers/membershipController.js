@@ -1,5 +1,5 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
-import { setMember } from '../db/queries.js';
+import { setMember, setAdmin } from '../db/queries.js';
 
 const digest = (value) =>
   createHash('sha256')
@@ -52,4 +52,34 @@ export async function postJoin(req, res) {
   const ok = passcodeMatches(req.body.passcode, process.env.MEMBER_PASSCODE);
   if (ok) await setMember(req.user.id);
   finish(req, res, ok, joinTerminal, '/feed');
+}
+
+const adminTerminal = {
+  mode: 'admin',
+  accent: 'red',
+  windowTitle: 'member@dev_clubhouse: ~/sudo',
+  banner: 'DEV_CLUBHOUSE ADMIN CONSOLE v1.0',
+  infoLines: [
+    'clearance ........ MEMBER',
+    'requested ........ ADMIN (delete any transmission)',
+  ],
+  intro: 'Enter the admin passcode to elevate privileges.',
+  prompt: 'member@dev_clubhouse:~# sudo --admin-key',
+  placeholder: 'enter admin passcode',
+  inputLabel: 'Admin passcode',
+  action: '/admin',
+  successUrl: '/feed',
+  enterLabel: '> OPEN ADMIN CONSOLE',
+  deniedMessage: 'ACCESS DENIED. Invalid passcode.',
+  error: null,
+};
+
+export function getAdmin(req, res) {
+  res.render('terminal', adminTerminal);
+}
+
+export async function postAdmin(req, res) {
+  const ok = passcodeMatches(req.body.passcode, process.env.ADMIN_PASSCODE);
+  if (ok) await setAdmin(req.user.id);
+  finish(req, res, ok, adminTerminal, '/feed');
 }

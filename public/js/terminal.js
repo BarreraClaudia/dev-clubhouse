@@ -23,6 +23,16 @@ if (form) {
       [700, '> unredacting author and timestamp fields', 'dim'],
       [700, 'ACCESS GRANTED. Welcome to the club.', 'ok'],
     ],
+    admin: [
+      [400, '> verifying admin passcode ........ OK', 'dim'],
+      [700, '> locating privileged process', 'dim'],
+      [700, '> exploiting sudoers misconfiguration', 'warn'],
+      [800, '> overwriting session token 0x7F3A', 'dim'],
+      [800, '> escalating privileges: MEMBER -> ADMIN', 'hot'],
+      [800, '> mounting moderation tools', 'dim'],
+      [700, '> arming delete command', 'hot'],
+      [700, 'ADMIN ACCESS GRANTED. Use it wisely.', 'ok'],
+    ],
   };
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
