@@ -6,6 +6,53 @@
                 <h1 class="display">&gt; transmissions<span class="cursor"></span></h1>
             </div>
 
+            <details class="composer" <%=errors.length ? 'open' : '' %>>
+                <summary class="btn btn-outline">
+                    <span class="label-closed">[+] NEW MESSAGE</span>
+                    <span class="label-open">[-] CLOSE</span>
+                </summary>
+
+                <div class="terminal">
+                    <div class="terminal-bar">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="terminal-title">
+                            <%= currentUser.username %>@dev_clubhouse: ~/new_message
+                        </span>
+                    </div>
+
+                    <form class="terminal-body" action="/messages" method="POST" novalidate>
+                        <% if (errors.length) { %>
+                            <ul class="errors" role="alert">
+                                <% errors.forEach((err)=> { %>
+                                    <li>&gt; ERROR: <%= err.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
+
+                                <div class="field">
+                                    <label for="title">title</label>
+                                    <input id="title" name="title" type="text" placeholder="What is this about?"
+                                        value="<%= formData.title || '' %>" required>
+                                </div>
+
+                                <div class="field">
+                                    <label for="text">message</label>
+                                    <textarea id="text" name="text" rows="4" placeholder="Type your transmission..."
+                                        required><%= formData.text || '' %></textarea>
+                                </div>
+
+                                <div class="form-foot">
+                                    <span class="note">
+                                        <%= level==='recruit' ? 'Your name and time stay classified for other recruits.'
+                                            : 'Members see your name and time on this post.' %>
+                                    </span>
+                                    <button class="btn btn-solid" type="submit">&gt; TRANSMIT</button>
+                                </div>
+                    </form>
+                </div>
+            </details>
+
             <% if (level==='recruit' ) { %>
                 <div class="banner banner-recruit">
                     <div>

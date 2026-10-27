@@ -1,4 +1,5 @@
-import { getAllMessages } from '../db/queries.js';
+import { body, validationResult } from 'express-validator';
+import { getAllMessages, createMessage } from '../db/queries.js';
 
 // "2026-10-25 21:14 UTC"
 const formatTime = (date) =>
@@ -31,3 +32,42 @@ export async function getFeed(req, res) {
   const messages = await loadFeed(req.user);
   res.render('feed', { messages, errors: [], formData: {} });
 }
+
+const validateMessage = [
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('Title is required')
+    .isLength({ max: 255 })
+    .withMessage('Title must be 255 characters or fewer'),
+  body('text')
+    .trim()
+    .notEmpty()
+    .withMessage('Message is required')
+    .isLength({ max: 2000 })
+    .withMessage('Message must be 2000 characters or fewer'),
+];
+
+export const postMessage = [
+  ...validateMessage,
+  async (req, res) => {
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+      const messages = await loadFeed(req.user);
+      return res.status(400).render('feed', {
+        messages,
+        errors: result.array(),
+        formData: req.body,
+      });
+    }
+
+    await createMessage({
+      title: req.body.title,
+      text: req.body.text,
+      userId: req.user.id,
+    });
+
+    res.redirect('/feed');
+  },
+];
