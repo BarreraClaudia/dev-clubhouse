@@ -1,1 +1,66 @@
-<h1>dev_clubhouse</h1>
+<%- include('partials/header') %>
+
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">// MEMBERS ONLY</p>
+            <h1 class="display display-xl">Everyone can read. Only members know who wrote it.</h1>
+            <p class="lead">Post to dev_clubhouse, read every transmission, and unlock names and timestamps with a
+                secret key.</p>
+            <div class="cta-row">
+                <a class="btn btn-solid btn-lg" href="/sign-up">&gt; SIGN UP</a>
+                <a class="btn btn-outline btn-lg" href="/log-in">&gt; LOG IN</a>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="terminal-title">recruit@dev_clubhouse: ~/transmissions</span>
+            </div>
+            <div class="terminal-body sample-list">
+                <div class="dim"><span class="green">$</span> tail -n 3 transmissions.log</div>
+
+                <div class="sample">
+                    <div class="tags"><span class="redacted">CLASSIFIED</span><span class="redacted">REDACTED</span>
+                    </div>
+                    <div>Share your thoughts with fellow devs!</div>
+                </div>
+                <div class="sample">
+                    <div class="tags"><span class="redacted">CLASSIFIED</span><span class="redacted">REDACTED</span>
+                    </div>
+                    <div>I successfully centered a div on my screen today. Unfortunately, it broke the layout of three
+                        completely unrelated websites currently open in my browser tabs and turned my smart fridge off.
+                        Worth it.</div>
+                </div>
+                <div class="sample">
+                    <div class="tags"><span class="redacted">CLASSIFIED</span><span class="redacted">REDACTED</span>
+                    </div>
+                    <div>Not a number is a number. Excellent. Logical. I am going to print out the ECMAScript
+                        specification just so I can throw it into a fireplace.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="levels-section">
+        <h2 class="section-title">&gt; ACCESS LEVELS</h2>
+        <div class="levels">
+            <div class="level">
+                <div class="dim">01</div>
+                <div class="level-name">RECRUIT</div>
+                <p>Sign up, read every transmission and post your own. Authors and timestamps stay classified.</p>
+            </div>
+            <div class="level">
+                <div class="dim">02</div>
+                <div class="level-name">MEMBER</div>
+                <p>Enter the secret key. Names and times are decrypted for good.</p>
+            </div>
+            <div class="level">
+                <div class="dim">03</div>
+                <div class="level-name">ADMIN</div>
+                <p>Enter the admin passcode. Delete any transmission.</p>
+            </div>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>

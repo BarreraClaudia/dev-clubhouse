@@ -1,0 +1,38 @@
+<% const pageTitle=(typeof title !=='undefined' && title) ? title + ' | dev_clubhouse' : 'dev_clubhouse' ; const
+    user=(typeof currentUser !=='undefined' ) ? currentUser : null; const clearance=!user ? null : user.is_admin
+    ? 'admin' : user.is_member ? 'member' : 'recruit' ; %>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            <%= pageTitle %>
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap">
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+    <body>
+        <div class="page">
+            <nav class="nav">
+                <a class="brand" href="/"><span class="green">root@dev_clubhouse</span><span class="dim">:~$</span></a>
+
+                <div class="nav-actions">
+                    <% if (!user) { %>
+                        <a class="btn btn-outline" href="/log-in">LOG IN</a>
+                        <a class="btn btn-solid" href="/sign-up">SIGN UP</a>
+                        <% } else { %>
+                            <span class="chip chip-<%= clearance %>">CLEARANCE: <%= clearance.toUpperCase() %></span>
+                            <% if (clearance==='recruit' ) { %>
+                                <a class="btn btn-warn" href="/join">&gt; ./join --key</a>
+                                <% } else if (clearance==='member' ) { %>
+                                    <a class="btn btn-danger" href="/admin">&gt; sudo --admin</a>
+                                    <% } %>
+                                        <a class="btn btn-muted" href="/log-out">LOG OUT</a>
+                                        <% } %>
+                </div>
+            </nav>
