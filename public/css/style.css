@@ -522,3 +522,139 @@ a {
 .composer[open] .label-closed {
   display: none;
 }
+
+/* terminal */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+[hidden] {
+  display: none !important;
+}
+
+.btn-danger-solid {
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: #1a0505;
+  box-shadow: 0 0 28px rgba(255, 107, 107, 0.45);
+}
+
+/* ---------- terminal pages (join / admin) ---------- */
+.terminal-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 48px;
+}
+.terminal-layout > .terminal {
+  flex: 999 1 560px;
+  min-width: 0;
+}
+.terminal-screen {
+  padding: 24px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+}
+.line {
+  overflow-wrap: anywhere;
+}
+.line-title {
+  font-weight: 700;
+  color: var(--green);
+}
+.line-intro {
+  margin-bottom: 14px;
+}
+.line-dim {
+  color: var(--dim);
+}
+.line-ok {
+  color: var(--green);
+  font-weight: 700;
+}
+.line-warn {
+  color: var(--amber);
+}
+.line-hot {
+  color: var(--red);
+}
+.line-err {
+  color: var(--red);
+}
+#progress {
+  margin-top: 8px;
+}
+#enter {
+  align-self: flex-start;
+  margin-top: 18px;
+}
+
+.terminal-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 10px;
+}
+.prompt-text {
+  color: var(--green);
+  white-space: nowrap;
+}
+.terminal-form input {
+  flex: 1 1 200px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  caret-color: var(--green);
+}
+.terminal-form input:focus {
+  outline: none;
+}
+.terminal-form input::placeholder {
+  color: #5f9a74;
+}
+
+.hexdump {
+  flex: 1 1 300px;
+  min-width: 0;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 13px;
+  color: #1fa65a;
+  white-space: nowrap;
+}
+.hexdump-title {
+  color: var(--dim);
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+}
+
+/* red variant for the admin terminal */
+.terminal-red {
+  border-color: var(--red);
+  box-shadow: 0 0 40px rgba(255, 107, 107, 0.1);
+}
+.terminal-red .line-title {
+  color: var(--red);
+}
+.terminal-red .prompt-text {
+  color: var(--red);
+}
+.terminal-red input {
+  caret-color: var(--red);
+}

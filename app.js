@@ -7,6 +7,7 @@ import passport from './config/passport.js';
 import pool from './db/pool.js';
 import authRouter from './routes/authRouter.js';
 import messageRouter from './routes/messageRouter.js';
+import membershipRouter from './routes/membershipRouter.js';
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', messageRouter);
+app.use('/', membershipRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, (error) => {

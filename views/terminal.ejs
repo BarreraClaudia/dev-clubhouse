@@ -1,0 +1,63 @@
+<%- include('partials/header', { title: mode==='admin' ? 'Admin Access' : 'Join the Club' }) %>
+
+    <main class="terminal-layout">
+        <div class="terminal terminal-<%= accent %>">
+            <div class="terminal-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="terminal-title">
+                    <%= windowTitle %>
+                </span>
+            </div>
+
+            <div class="terminal-screen">
+                <div class="line line-title">
+                    <%= banner %>
+                </div>
+                <% infoLines.forEach((text)=> { %>
+                    <div class="line line-dim">
+                        <%= text %>
+                    </div>
+                    <% }) %>
+                        <div class="line line-intro">
+                            <%= intro %>
+                        </div>
+
+                        <div id="output" aria-live="polite">
+                            <% if (error) { %>
+                                <div class="line line-err">
+                                    <%= error %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div id="progress" class="line line-ok" hidden></div>
+
+                        <form id="terminal-form" class="terminal-form" action="<%= action %>" method="POST"
+                            data-mode="<%= mode %>" data-prompt="<%= prompt %>" data-denied="<%= deniedMessage %>">
+                            <label for="passcode" class="sr-only">
+                                <%= inputLabel %>
+                            </label>
+                            <span class="prompt-text">
+                                <%= prompt %>
+                            </span>
+                            <input id="passcode" name="passcode" type="password" autocomplete="off" spellcheck="false"
+                                placeholder="<%= placeholder %>" required autofocus>
+                            <button class="btn btn-<%= accent === 'red' ? 'danger' : 'outline' %>"
+                                type="submit">EXECUTE</button>
+                        </form>
+
+                        <a id="enter" class="btn btn-lg btn-<%= accent === 'red' ? 'danger-solid' : 'solid' %>"
+                            href="<%= successUrl %>" hidden>
+                            <%= enterLabel %>
+                        </a>
+            </div>
+        </div>
+
+        <aside id="hex" class="hexdump" aria-hidden="true" hidden>
+            <div class="hexdump-title">MEMORY DUMP</div>
+            <div id="hex-rows"></div>
+        </aside>
+    </main>
+
+    <script src="/js/terminal.js" defer></script>
+    <%- include('partials/footer') %>
