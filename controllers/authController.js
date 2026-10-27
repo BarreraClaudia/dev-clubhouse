@@ -62,7 +62,7 @@ export const postSignUp = [
     // log them in right after signing up
     req.login(user, (error) => {
       if (error) return next(error);
-      res.redirect('/');
+      res.redirect('/feed');
     });
   },
 ];
@@ -75,7 +75,7 @@ export function getLogIn(req, res) {
 }
 
 export const postLogIn = passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/feed',
   failureRedirect: '/log-in',
   failureMessage: true,
 });

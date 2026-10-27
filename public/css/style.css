@@ -389,3 +389,102 @@ a {
     font-size: 60px;
   }
 }
+
+/* ---------- feed ---------- */
+.feed {
+  max-width: 920px;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.page-head .display {
+  font-size: 64px;
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.banner-title {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.banner-recruit {
+  border-color: var(--amber);
+  background: #120d04;
+  color: #e6d3b3;
+}
+.banner-recruit .banner-title {
+  color: var(--amber);
+}
+.banner-member .banner-title {
+  color: var(--green);
+}
+.banner-admin {
+  border-color: var(--red);
+  background: #140808;
+  color: #f0cfcf;
+}
+.banner-admin .banner-title {
+  color: var(--red);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.message {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.message h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+  text-wrap: balance;
+}
+.message p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 14px;
+}
+.ref {
+  color: var(--dim);
+  font-size: 13px;
+}
+.handle {
+  color: var(--green);
+  font-weight: 700;
+}
+.time {
+  margin-left: auto;
+  color: var(--dim);
+}

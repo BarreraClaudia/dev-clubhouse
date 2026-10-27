@@ -1,0 +1,66 @@
+<% const level=currentUser.is_admin ? 'admin' : currentUser.is_member ? 'member' : 'recruit' ; %>
+    <%- include('partials/header', { title: 'Transmissions' }) %>
+
+        <main class="feed">
+            <div class="page-head">
+                <h1 class="display">&gt; transmissions<span class="cursor"></span></h1>
+            </div>
+
+            <% if (level==='recruit' ) { %>
+                <div class="banner banner-recruit">
+                    <div>
+                        <div class="banner-title">RESTRICTED FIELDS</div>
+                        <div>Authors and timestamps are classified until you enter the secret key.</div>
+                    </div>
+                    <a class="btn btn-warn" href="/join">&gt; ./join --key</a>
+                </div>
+                <% } else if (level==='member' ) { %>
+                    <div class="banner banner-member">
+                        <div>
+                            <div class="banner-title">IDENTITIES DECRYPTED</div>
+                            <div>You can now see who wrote each transmission and when.</div>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <div class="banner banner-admin">
+                            <div>
+                                <div class="banner-title">ADMIN CONSOLE</div>
+                                <div>You can see every identity and delete any transmission.</div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                            <div class="messages">
+                                <% messages.forEach((m)=> { %>
+                                    <article class="message">
+                                        <div class="meta">
+                                            <span class="ref">
+                                                <%= m.ref %>
+                                            </span>
+                                            <% if (m.handle) { %>
+                                                <span class="handle">@<%= m.handle %></span>
+                                                <span class="dim">
+                                                    <%= m.name %>
+                                                </span>
+                                                <span class="time">
+                                                    <%= m.time %>
+                                                </span>
+                                                <% } else { %>
+                                                    <span class="redacted"
+                                                        aria-label="Author classified">CLASSIFIED</span>
+                                                    <span class="redacted"
+                                                        aria-label="Timestamp redacted">REDACTED</span>
+                                                    <% } %>
+                                        </div>
+                                        <h2>
+                                            <%= m.title %>
+                                        </h2>
+                                        <p>
+                                            <%= m.text %>
+                                        </p>
+                                    </article>
+                                    <% }) %>
+                            </div>
+        </main>
+
+        <%- include('partials/footer') %>
