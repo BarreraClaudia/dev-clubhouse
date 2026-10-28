@@ -1,0 +1,25 @@
+<%- include('partials/header', { title: String(status) }) %>
+
+    <main class="narrow">
+        <div>
+            <p class="eyebrow">// ERROR</p>
+            <h1 class="display">
+                <%= status %>
+                    <%= heading %><span class="cursor"></span>
+            </h1>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="terminal-title">error@dev_clubhouse: ~</span>
+            </div>
+            <div class="terminal-body">
+                <div class="line line-err">&gt; <%= message %>
+                </div>
+                <div><a class="btn btn-outline" href="/">&gt; cd ~</a></div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>

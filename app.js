@@ -50,6 +50,25 @@ app.use('/', authRouter);
 app.use('/', messageRouter);
 app.use('/', membershipRouter);
 
+app.use((req, res) => {
+  res.status(404).render('error', {
+    status: 404,
+    heading: 'NOT FOUND',
+    message: 'That route does not exist in this system.',
+  });
+});
+
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);
+
+  console.error(err); // full details stay in your server logs
+  res.status(500).render('error', {
+    status: 500,
+    heading: 'SYSTEM FAILURE',
+    message: 'Something went wrong on our end. Try again in a moment.',
+  });
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, (error) => {
   if (error) {

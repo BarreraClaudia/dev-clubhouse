@@ -43,5 +43,9 @@ For deleting messages
 // Admins only
 export function ensureAdmin(req, res, next) {
   if (req.user.is_admin) return next();
-  res.status(403).send('Forbidden');
+  res.status(403).render('error', {
+    status: 403,
+    heading: 'ACCESS DENIED',
+    message: 'Admin clearance required.',
+  });
 }
