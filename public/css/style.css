@@ -658,3 +658,30 @@ a {
 .terminal-red input {
   caret-color: var(--red);
 }
+
+/* ---------- delete message button (for admins only) ---------- */
+
+.message-actions {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.delete-confirm > summary {
+  list-style: none;
+  width: fit-content;
+  cursor: pointer;
+}
+.delete-confirm > summary::-webkit-details-marker {
+  display: none;
+}
+.delete-confirm form {
+  margin-top: 12px;
+}
+details > summary .label-open {
+  display: none;
+}
+details[open] > summary .label-open {
+  display: inline;
+}
+details[open] > summary .label-closed {
+  display: none;
+}

@@ -33,3 +33,15 @@ export function ensureNotAdmin(req, res, next) {
   if (!req.user.is_admin) return next();
   res.redirect('/feed');
 }
+
+/*
+----------------------
+For deleting messages
+----------------------
+*/
+
+// Admins only
+export function ensureAdmin(req, res, next) {
+  if (req.user.is_admin) return next();
+  res.status(403).send('Forbidden');
+}

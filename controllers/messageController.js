@@ -1,5 +1,5 @@
 import { body, validationResult } from 'express-validator';
-import { getAllMessages, createMessage } from '../db/queries.js';
+import { getAllMessages, createMessage, deleteMessage } from '../db/queries.js';
 
 // "2026-10-25 21:14 UTC"
 const formatTime = (date) =>
@@ -72,3 +72,11 @@ export const postMessage = [
     res.redirect('/feed');
   },
 ];
+
+export async function postDeleteMessage(req, res, next) {
+  // only plain positive integers; anything else falls through to a 404
+  if (!/^\d{1,9}$/.test(req.params.id)) return next();
+
+  await deleteMessage(Number(req.params.id));
+  res.redirect('/feed');
+}

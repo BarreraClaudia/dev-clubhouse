@@ -105,6 +105,22 @@
                                         <p>
                                             <%= m.text %>
                                         </p>
+
+                                        <% if (level==='admin' ) { %>
+                                            <div class="message-actions">
+                                                <details class="delete-confirm">
+                                                    <summary class="btn btn-danger">
+                                                        <span class="label-closed">[x] DELETE<span class="sr-only">
+                                                                transmission <%= m.ref %></span></span>
+                                                        <span class="label-open">CANCEL</span>
+                                                    </summary>
+                                                    <form action="/messages/<%= m.id %>/delete" method="POST">
+                                                        <button class="btn btn-danger-solid" type="submit">CONFIRM
+                                                            DELETE</button>
+                                                    </form>
+                                                </details>
+                                            </div>
+                                            <% } %>
                                     </article>
                                     <% }) %>
                             </div>
