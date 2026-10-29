@@ -10,6 +10,9 @@ import messageRouter from './routes/messageRouter.js';
 import membershipRouter from './routes/membershipRouter.js';
 
 const app = express();
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) app.set('trust proxy', 1);
 
 const __dirname = path.join(import.meta.dirname);
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +36,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
       httpOnly: true,
       sameSite: 'lax',
+      secure: isProduction, // HTTPS only in production
     },
   }),
 );
