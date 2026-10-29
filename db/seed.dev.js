@@ -2,11 +2,17 @@
 
 import { Client } from 'pg';
 
-const databaseUrl = process.argv[2];
+const connectionString = process.env.DATABASE_URL;
 
-if (!databaseUrl) {
+if (!connectionString) {
+  console.error('DATABASE_URL is not set');
+  process.exit(1);
+}
+
+const host = new URL(connectionString).hostname;
+if (!['localhost', '127.0.0.1'].includes(host)) {
   console.error(
-    'Please provide a database connection string as an argument: node db/populatedb.js <url>',
+    `Refusing to seed development data into "${host}". This script is local-only.`,
   );
   process.exit(1);
 }
@@ -17,7 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
   first_name    VARCHAR(100) NOT NULL,
   last_name     VARCHAR(100) NOT NULL,
   username      VARCHAR(255) NOT NULL UNIQUE,
-  password      VARCHAR(255) NOT NULL,          -- bcrypt hash from your Express server
+  password      VARCHAR(255) NOT NULL,
   is_member     BOOLEAN NOT NULL DEFAULT FALSE,
   is_admin      BOOLEAN NOT NULL DEFAULT FALSE
 );
@@ -29,6 +35,9 @@ CREATE TABLE IF NOT EXISTS messages (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- empties both tables and resets the ids
+TRUNCATE messages, users RESTART IDENTITY CASCADE;
 
 -- Sample users
 INSERT INTO users (first_name, last_name, username, password, is_member, is_admin) VALUES
@@ -66,7 +75,7 @@ async function main() {
   console.log('seeding...');
 
   const client = new Client({
-    connectionString: databaseUrl,
+    connectionString: connectionString,
   });
 
   try {
