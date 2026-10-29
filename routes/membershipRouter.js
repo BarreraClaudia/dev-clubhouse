@@ -11,11 +11,18 @@ import {
   getAdmin,
   postAdmin,
 } from '../controllers/membershipController.js';
+import { passcodeLimiter } from '../middleware/rateLimiters.js';
 
 const membershipRouter = Router();
 
 membershipRouter.get('/join', ensureAuth, ensureNotMember, getJoin);
-membershipRouter.post('/join', ensureAuth, ensureNotMember, postJoin);
+membershipRouter.post(
+  '/join',
+  ensureAuth,
+  ensureNotMember,
+  passcodeLimiter,
+  postJoin,
+);
 
 membershipRouter.get(
   '/admin',
@@ -29,6 +36,7 @@ membershipRouter.post(
   ensureAuth,
   ensureMember,
   ensureNotAdmin,
+  passcodeLimiter,
   postAdmin,
 );
 

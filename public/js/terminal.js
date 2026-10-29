@@ -114,7 +114,7 @@ if (form) {
         await runSequence(SEQUENCES[form.dataset.mode]);
         return; // stay "busy"; the only way forward is the button
       }
-      addLine(form.dataset.denied, 'err');
+      addLine(result.message || form.dataset.denied, 'err');
     } catch {
       addLine('CONNECTION ERROR. Try again.', 'err');
     }
