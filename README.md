@@ -2,6 +2,12 @@
 
 A members only message board. Anyone with an account can post and read, but only members can see **who** wrote each post and **when**. Unlock membership by "hacking in" with a secret key.
 
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+Member secret key: me-hoy-minoy
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
 ## Features
 
 - Sign up and log in with validated forms and hashed passwords
