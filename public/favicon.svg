@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>dev_clubhouse</title>
+  <rect width="64" height="64" rx="12" fill="#050806"/>
+  <polyline points="15,20 31,32 15,44" fill="none" stroke="#3dff8b" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="36" y="40" width="15" height="7" fill="#3dff8b"/>
+</svg>
